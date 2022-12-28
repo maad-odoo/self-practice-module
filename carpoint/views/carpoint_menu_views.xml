@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <!-- Services menu -->
+        <record id="carpoint_allservices_action" model="ir.actions.act_window">
+                <field name="name">All Services</field>
+                <field name="res_model">car.model</field>
+                <field name="view_mode">tree,form</field>
+        </record>
+
+</odoo>
+        
+
+       <!--
+        <record id="carpoint_rental_service_action" model="ir.actions.act_window">
+                <field name="name">All Rental Services</field>
+                <field name="res_model">carpoint.service</field>
+                <field name="view_mode">tree,form</field>
+        </record>
+        <record id="carpoint_repair_service_action" model="ir.actions.act_window">
+                <field name="name">All Reapairing Services</field>
+                <field name="res_model">carpoint.service</field>
+                <field name="view_mode">tree,form</field>
+        </record>
+        <record id="carpoint_modification_service_action" model="ir.actions.act_window">
+                <field name="name">All Modification Services</field>
+                <field name="res_model">carpoint.service</field>
+                <field name="view_mode">tree,form</field>
+        </record>
+
+       
+        <record id="carpoint_rental_cars_action" model="ir.actions.act_window">
+                <field name="name">Rental Cars</field>
+                <field name="res_model">carpoint.service</field>
+                <field name="view_mode">tree,form</field>
+        </record> -->
+
