@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from . import carpoint_service
-from . import carpoint_user
-from . import carpoint_rental_car
-from . import carpoint_servicing_car
+from . import carpoint_users
+from . import carpoint_rental_task
+from . import test_seq
+from . import carpoint_cars_rental
+
 
 
 

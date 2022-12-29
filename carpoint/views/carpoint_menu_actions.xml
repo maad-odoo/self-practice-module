@@ -1,34 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
    <menuitem id="carpoint_menu_root" name="Car Point">
-
-        <!-- Services -->
-        <menuitem id="carpoint_services_menu" name="Services">
-            <menuitem id="carpoint_service_all" action="carpoint_allservices_action"/>
-            <menuitem id="carpoint_service_types" action="carpoint_typeservices_action"/>
-        </menuitem>
         <!-- Users -->
         <menuitem id="carpoint_users_menu" name="Users">
             <menuitem id="carpoint_user_all" action="carpoint_allusers_action"/>
         </menuitem>
-        <!--Cars-->
+        <!-- Task -->
+        <menuitem id="carpoint_tasks_menu" name="Tasks">
+            <menuitem id="carpoint_task_all" action="carpoint_task_action"/>
+        </menuitem>
+         <!-- Cars -->
         <menuitem id="carpoint_cars_menu" name="Cars">
-            <menuitem id="carpoint_rental_cars" action="carpoint_rental_cars_action"/>
-            <menuitem id="carpoint_servicing_cars" action="carpoint_servicing_cars_action"/>
+            <menuitem id="carpoint_rental_task" action="carpoint_rent_car_action"/>
+            <menuitem id="carpoint_repair_task" action="carpoint_modify_car_action"/>
+            <menuitem id="carpoint_modify_task" action="seq_test"/>
         </menuitem>
     </menuitem>
 </odoo>
-
-
-<!-- Cars
-        
-        
-        <menuitem id="carpoint_carservices_menu" name="Car Services">
-            <menuitem id="carpoint_rental_service" action="carpoint_rental_service_action"/>
-            <menuitem id="carpoint_repair_service" action="carpoint_repair_service_action"/>
-            <menuitem id="carpoint_modification_service" action="carpoint_modification_service_action"/>
-        </menuitem>
-        
-        <menuitem id="carpoint_employee_menu" name="Employee">
-            <menuitem id="carpoint_employee_details" action="carpoint_employee_action"/>
-        </menuitem> -->
