@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+   <menuitem id="carpoint_menu_root" name="Car Point">
+        <!-- Rntal Task -->
+        <menuitem id="carpoint_rent_menu" name="Rent Task">
+                <menuitem id="carpointrental" action="carpoint_rental_action"/>
+        </menuitem>
+        <!-- Users -->
+        <menuitem id="carpoint_users_menu" name="Users">
+            <menuitem id="carpoint_user_all" action="carpoint_allusers_action"/>
+        </menuitem>
+         <!-- Rental Cars -->
+        <menuitem id="carpoint_rental_cars" name="Rental Cars">
+            <menuitem id="carpoint_rental_car" action="rental_car_action"/>
+        </menuitem>
+        <!-- Employees -->
+        <menuitem id="carpoint_employee" name="Employees">
+            <menuitem id="carpoint_emp_driver" action="rental_emp_driver"/>
+        </menuitem> 
+        <!-- Tags -->
+        <menuitem id="carpoint_tags" name="Tags">
+            <menuitem id="carpoint_menu_tags" action="tags_action"/>
+        </menuitem>
+        <menuitem id="carpoint_configuration" name="Configuration">
+            <menuitem id="carpoint_settings" action="action_carpoint_config_settings"/>
+        </menuitem>
+    </menuitem>
+</odoo>

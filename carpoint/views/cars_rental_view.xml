@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- ____________________________Tree View______________________________________ !-->
+        <record id="carpoint_rental_car_task_tree" model="ir.ui.view">
+            <field name="name">carpoint.car.rental.tree.view</field>
+            <field name="model">carpoint.cars.rental</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- <field name="rentcar_uid"/> -->
+                    <field name="name" />
+                    <field name="car_company" />
+                    <field name="car_transmission" />
+                    <field name="car_availability" />
+                </tree>
+            </field>
+        </record>
+        <!-- ____________________________Form View______________________________________ !-->
+        <record id="rental_car_form" model="ir.ui.view">
+            <field name="name">rental.car.form</field>
+            <field name="model">carpoint.cars.rental</field>
+            <field name="arch" type="xml">
+                <form string="rentla_cars_form">
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                        <button name="action_to_vacant" type="object" string="Vacant"/> 
+                        <button name="action_to_on_road" type="object" string="On Road"/> 
+                        <button name="action_to_on_service" type="object" string="On Service"/> 
+                        <button name="action_to_in_active" type="object" string="In Active"/> 
+                    </header>
+                    <sheet>
+                    <label for="name">Car Name</label>
+                    <h1><field name="name"/></h1>
+                        <group>
+                            <group>
+                                <field name="car_image" class="oe_avatar" widgte="image"/>
+                            </group>
+                            <group>
+                                <field name="car_company"/>
+                                <field name="car_category"/>
+                            </group>
+                            <group>
+                                <field name="car_availability"/>
+                                <field name="car_no_plate"/>
+                            </group>
+                            <notebook>
+                                <page string="Car Interior">
+                                    <group>
+                                        <field name="car_transmission" />
+                                    </group>
+                                    <group>
+                                        <field name="car_seating" />
+                                    </group>
+                                    <group>
+                                        <field name="car_engine" />
+                                    </group>
+                                </page>
+                                <page string="Car Exterior">
+                                    <group>
+                                        <field name="car_color" />
+                                    </group>
+                                </page>
+                                <page string="Other Info">
+                                    <group>
+                                        <field name="car_insurance" />
+                                        <field name="car_insurance_Expirey" />
+                                    </group>
+                                    <group>
+                                        <field name="car_service" />
+                                        <field name="car_next_service" />
+                                    </group>
+                                    <group>
+                                        <field name="car_avg_milage" />
+                                        <field name="car_manuf_year" />
+                                        <field name="car_fitness" />
+                                        <field name="car_totalkm" />
+                                    </group>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="activity_ids"></field>
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="car_kanban_view" model="ir.ui.view">
+            <field name="name">carpoint.kanban.car.view</field>
+            <field name="model">carpoint.cars.rental</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_details d-flex flex-column">
+                                <!-- <span t-esc="record.name.raw_value"/> -->
+                                <strong>
+                                    <field name="name" />
+                                </strong>
+                                <ul>
+                                    <li>Company: <field name="car_company" /></li>
+                                </ul>
+                            </div>
+                        </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+    </data>
+</odoo>

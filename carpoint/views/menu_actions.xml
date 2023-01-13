@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+                <!-- Rental Task -->
+        <record id="carpoint_rental_action" model="ir.actions.act_window">
+                <field name="name">Rental Task</field>
+                <field name="res_model">carpoint.rental.task</field>
+                <field name="view_mode">tree,form</field>
+        </record>
+        <!-- User menu -->
+        <record id="carpoint_allusers_action" model="ir.actions.act_window">
+                <field name="name">All Users</field>
+                <field name="res_model">carpoint.users</field>
+                <field name="view_mode">tree,form</field>
+        </record>
+                <!-- Rental Car -->
+        <record id="rental_car_action" model="ir.actions.act_window">
+                <field name="name">Cars</field>
+                <field name="res_model">carpoint.cars.rental</field>
+                <field name="view_mode">kanban,tree,form</field>
+        </record>
+        <!-- ________________ Employee Menu__________________________ -->
+                <!-- Driver -->
+        <record id="rental_emp_driver" model="ir.actions.act_window">
+                <field name="name">Driver</field>
+                <field name="res_model">rental.driver</field>
+                <field name="view_mode">tree,form</field>
+        </record>
+                <!-- Officals
+        <record id="rental_emp_official" model="ir.actions.act_window">
+                <field name="name">Officials</field>
+                <field name="res_model">rental.official</field>
+                <field name="view_mode">tree,form</field>
+        </record>
+                 Mechanics 
+        <record id="rental_emp_mechanic" model="ir.actions.act_window">
+                <field name="name">Mechanics</field>
+                <field name="res_model">rental.mechanic</field>
+                <field name="view_mode">tree,form</field>
+        </record>
+                 Maintainance 
+        <record id="rental_emp_maintainance" model="ir.actions.act_window">
+                <field name="name">Maintainance</field>
+                <field name="res_model">rental.maintainance</field>
+                <field name="view_mode">tree,form</field>
+        </record> -->
+        <!-- ________________ // Employee Menu //__________________________ -->
+
+        <record id="action_carpoint_config_settings" model="ir.actions.act_window">
+                <field name="name">Settings</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">res.config.settings</field>
+                <field name="view_id" ref="res_config_settings_view_form"/>
+                <field name="view_mode">form</field>
+                <field name="target">inline</field>
+                <!-- <field name="context">{'module':'carpoint'}</field> -->
+            </record>
+
+</odoo>
+        
+
+      

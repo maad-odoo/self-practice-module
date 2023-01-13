@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Tree View -->
+        <record id="rental_driver_tree" model="ir.ui.view">
+            <field name="name">carpoint.rental.car.tree</field>
+            <field name="model">rental.driver</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="driver_name" />
+                    <field name="driver_add" />
+                    <field name="driver_contact" />
+                    <field name="driver_status" />
+                    <field name="driver_DOJ" />
+                </tree>
+            </field>
+        </record>
+        <!-- From View -->
+        <record id="rental_driver_form" model="ir.ui.view">
+            <field name="name">carpoint.driver.form</field>
+            <field name="model">rental.driver</field>
+            <field name="arch" type="xml">
+                <form string="user_form">
+                    <sheet>
+                        <group>
+                            <field name="driver_name"/>
+                            <field name="driver_add"/>
+                            <field name="driver_contact"/>
+                            <field name="driver_status"/>
+                            <field name="driver_DOJ"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
