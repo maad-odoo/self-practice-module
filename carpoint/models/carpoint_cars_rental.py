@@ -6,9 +6,8 @@ class carpointRentalCar(models.Model):
     _name = "carpoint.cars.rental"
     _description = "Car Point User Module"
     _inherit = ['mail.thread','mail.activity.mixin']
+    _order = "id desc"
 
-
-    # rentcar_uid = fields.Integer(string="Car ID:", default='increment_rental_cars_field_sequence' self: self.env['ir.sequence'].next_by_code('increment_rental_cars_field'))
     name = fields.Char(string="Car Name:",required=True,tracking=True)
     car_manuf_year = fields.Date(string="Cars Manufacturing Date:")
     car_company = fields.Char(string="Car Company:")
@@ -28,7 +27,7 @@ class carpointRentalCar(models.Model):
         ('muv','Multi-Utility Vehical'),
         ('compactsedan','Comapact Sedan'),
         ('minibus','Mini Bus')])
-    car_image=fields.Image(string="Image")
+    # car_image=fields.Image(string="Image")
     car_seating = fields.Selection(selection=[('2','2'),('4','4'),('5','5'),('7','7'),('12','12'),('14','14')])
     car_totalkm = fields.Integer('Total KM:')
     car_availability = fields.Selection(selection=[('available','Available'),('booked','Booked'),('undermain','Under Maintainance')],tracking=True)
@@ -40,8 +39,10 @@ class carpointRentalCar(models.Model):
     car_service = fields.Date("Latest Service Date:",tracking=True)
     car_next_service = fields.Date("Upcomming Service:",tracking=True)
     car_no_plate = fields.Char("Number Plate:")
+    car_base_price = fields.Float("Base Fair (Per KM):")
     active = fields.Boolean(default=True,tracking=True)
     state=fields.Selection(selection=[('vacant', 'Vacant'), ('on_road', 'On Road'),('on_service', 'On Service'),('in_active', 'In Active')],tracking=True)
+    car_history=fields.One2many("carpoint.rental.task","car_name_id",string="Previous Activities",readonly=True)
 
     def action_to_vacant(self):
         for record in self:
@@ -58,11 +59,3 @@ class carpointRentalCar(models.Model):
     def action_to_in_active(self):
         for record in self:
             record.state ='in_active'
-    
-    
-    # car_name = fields.Many2one("carpoint.cars.rental",string="Car Name")
-    # car_transmission = fields.Char(related="car_name.car_transmission")
-    # car_no_plate = fields.Char(related="car_name.car_no_plate")
-    # car_category = fields.Char(related="car_name.car_category")
-    # car_seating = fields.Char(related="car_name.car_seating")
-    # car_color = fields.Char(related="car_name.car_color")

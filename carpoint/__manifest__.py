@@ -12,7 +12,8 @@
         'views/cars_rental_view.xml',
         'views/rental_driver.xml',
         'views/tags.xml',
-        'views/settings.xml',
+        'data/sequence_data.xml',
+        # 'views/settings.xml',
         'security/ir.model.access.csv',    
     ],
     'demo' : [

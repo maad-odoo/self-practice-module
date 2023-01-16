@@ -21,8 +21,8 @@
         <menuitem id="carpoint_tags" name="Tags">
             <menuitem id="carpoint_menu_tags" action="tags_action"/>
         </menuitem>
-        <menuitem id="carpoint_configuration" name="Configuration">
+        <!-- <menuitem id="carpoint_configuration" name="Configuration">
             <menuitem id="carpoint_settings" action="action_carpoint_config_settings"/>
-        </menuitem>
+        </menuitem> -->
     </menuitem>
 </odoo>

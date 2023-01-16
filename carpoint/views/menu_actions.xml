@@ -26,35 +26,11 @@
                 <field name="res_model">rental.driver</field>
                 <field name="view_mode">tree,form</field>
         </record>
-                <!-- Officals
-        <record id="rental_emp_official" model="ir.actions.act_window">
-                <field name="name">Officials</field>
-                <field name="res_model">rental.official</field>
+        <record id="tags_action" model="ir.actions.act_window">
+                <field name="name">Tags</field>
+                <field name="res_model">carpoint.tags</field>
                 <field name="view_mode">tree,form</field>
         </record>
-                 Mechanics 
-        <record id="rental_emp_mechanic" model="ir.actions.act_window">
-                <field name="name">Mechanics</field>
-                <field name="res_model">rental.mechanic</field>
-                <field name="view_mode">tree,form</field>
-        </record>
-                 Maintainance 
-        <record id="rental_emp_maintainance" model="ir.actions.act_window">
-                <field name="name">Maintainance</field>
-                <field name="res_model">rental.maintainance</field>
-                <field name="view_mode">tree,form</field>
-        </record> -->
-        <!-- ________________ // Employee Menu //__________________________ -->
-
-        <record id="action_carpoint_config_settings" model="ir.actions.act_window">
-                <field name="name">Settings</field>
-                <field name="type">ir.actions.act_window</field>
-                <field name="res_model">res.config.settings</field>
-                <field name="view_id" ref="res_config_settings_view_form"/>
-                <field name="view_mode">form</field>
-                <field name="target">inline</field>
-                <!-- <field name="context">{'module':'carpoint'}</field> -->
-            </record>
 
 </odoo>
         

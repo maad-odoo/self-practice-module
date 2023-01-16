@@ -6,11 +6,12 @@ class carpointUser(models.Model):
     _name = "carpoint.rental.task"
     _description = "Car Point Task Module"
     _inherit = ['mail.thread','mail.activity.mixin']
+    _rec_name="seq_name"
+    _order = "id desc"
 
 
-    # name = fields.Char(string='Order Reference', required=True,readonly=True, default=lambda self: ('100'))
+    seq_name = fields.Char(string='Task Reference', required=True,readonly=True, default=lambda self: ('New'))
     task_user = fields.Many2one('carpoint.users',required=True,tracking=True)
-    # car_type = field.Many2  
     validity=fields.Integer(string="Duration",tracking=True)
     tags=fields.Many2many("carpoint.tags",string="Tags")
     task_DOS = fields.Date('Date of issue: ',default=lambda self:fields.Datetime.today())
@@ -26,6 +27,8 @@ class carpointUser(models.Model):
     car_category = fields.Selection(related="car_name_id.car_category")
     car_seating = fields.Selection(related="car_name_id.car_seating")
     car_color = fields.Char(related="car_name_id.car_color")
+    car_price = fields.Float(related="car_name_id.car_base_price")
+    total_price = fields.Float(compute="compute_total_price")
 
     def action_to_in_progress(self):
         for record in self:
@@ -35,5 +38,14 @@ class carpointUser(models.Model):
         for record in self:
             record.state ='close'
     
+    @api.model
+    def create(self,vals):
+        vals['seq_name'] = self.env['ir.sequence'].next_by_code('carpoint.rental.task')
+        return super(carpointUser,self).create(vals)
+
+    @api.depends('car_price','validity')
+    def compute_total_price(self):
+        for record in self:
+            self.total_price = record.validity*record.car_price
     
     

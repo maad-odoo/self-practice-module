@@ -6,10 +6,14 @@
             <field name="name">carpoint.rental.task.tree.view</field>
             <field name="model">carpoint.rental.task</field>
             <field name="arch" type="xml">
-                <tree>
-                    <!-- <field name="name"/> -->
+                <tree decoration-primary="state=='new'" decoration-success="state=='inprogress'" decoration-info="state=='close'">
+                    <field name="seq_name" />
                     <field name="task_user"/> 
+                    <field name="tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field name="car_name_id"/>
                     <field name="task_DOS"/>
+                    <field name="task_end"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -29,6 +33,7 @@
                     </header>
                 <!-- / Header Section -->
                     <sheet>
+                        <h1><field name="seq_name" nolabel="1"/></h1>
                         <group>
                             <group>
                                 <field name="task_user"/>
@@ -41,6 +46,7 @@
                             <group>
                                 <field name="end_location"/>
                                 <field name="state"/>
+                                <field name="total_price"/> 
                             </group>
                             <notebook>
                                 <page string="Date and Duration">
@@ -58,6 +64,7 @@
                                         <field name="car_category"/>
                                         <field name="car_seating"/>
                                         <field name="car_color"/>
+                                        <field name="car_price"/> 
                                     </group>
                                 </page>
                             </notebook>
