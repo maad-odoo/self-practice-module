@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields,api
+from dateutil.relativedelta import relativedelta
 
 class carpointUser(models.Model):
     _name = "carpoint.rental.task"
@@ -9,13 +10,12 @@ class carpointUser(models.Model):
     _rec_name="seq_name"
     _order = "id desc"
 
-
     seq_name = fields.Char(string='Task Reference', required=True,readonly=True, default=lambda self: ('New'))
     task_user = fields.Many2one('carpoint.users',required=True,tracking=True)
     validity=fields.Integer(string="Duration",tracking=True)
     tags=fields.Many2many("carpoint.tags",string="Tags")
     task_DOS = fields.Date('Date of issue: ',default=lambda self:fields.Datetime.today())
-    task_end = fields.Date()
+    task_end = fields.Date(compute="compute_deadline",inverse="inverse_deadline")
     mode=fields.Selection(selection=[('withdriver','With Driver'),('selfdriver','Self Driving')],tracking=True)
     start_location=fields.Char()
     end_location=fields.Char()
@@ -26,7 +26,7 @@ class carpointUser(models.Model):
     car_no_plate = fields.Char(related="car_name_id.car_no_plate")
     car_category = fields.Selection(related="car_name_id.car_category")
     car_seating = fields.Selection(related="car_name_id.car_seating")
-    car_color = fields.Char(related="car_name_id.car_color")
+    car_color = fields.Float(related="car_name_id.car_color")
     car_price = fields.Float(related="car_name_id.car_base_price")
     total_price = fields.Float(compute="compute_total_price")
 
@@ -48,4 +48,11 @@ class carpointUser(models.Model):
         for record in self:
             self.total_price = record.validity*record.car_price
     
+    @api.depends('validity','task_end')
+    def compute_deadline(self):
+        for record in self:
+            record.task_end= record.task_DOS + relativedelta(days=record.validity)
     
+    def inverse_deadline(self):
+        for record in self:
+            record.validity = (record.task_end - record.task_DOS).days
