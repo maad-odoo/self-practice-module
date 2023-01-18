@@ -26,7 +26,7 @@ class carpointUser(models.Model):
     car_no_plate = fields.Char(related="car_name_id.car_no_plate")
     car_category = fields.Selection(related="car_name_id.car_category")
     car_seating = fields.Selection(related="car_name_id.car_seating")
-    car_color = fields.Float(related="car_name_id.car_color")
+    car_color = fields.Char(related="car_name_id.car_color")
     car_price = fields.Float(related="car_name_id.car_base_price")
     total_price = fields.Float(compute="compute_total_price")
 

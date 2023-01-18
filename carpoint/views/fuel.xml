@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- ____________________________Tree View______________________________________ !-->
+        <record id="carpoint_fuel_tree_view" model="ir.ui.view">
+            <field name="name">carpoint.car.fuel.tree.view</field>
+            <field name="model">carpoint.fuel</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="disel" />
+                    <field name="petrol" />
+                    <field name="cng" />
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+        <!-- ________________________Form View___________________________________________ !-->
+        <record id="carpoint_fuel_form_view" model="ir.ui.view">
+            <field name="name">carpoint.car.fuel.form.view</field>
+            <field name="model">carpoint.fuel</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="disel"/>
+                        </group>
+                        <group>
+                            <field name="petrol"/>
+                        </group>
+                        <group>
+                            <field name="cng"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

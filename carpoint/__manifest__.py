@@ -5,6 +5,7 @@
     'application' : True, 
     'depends': ['base', 'mail'], 
     'data' : [
+        'security/ir.model.access.csv',    
         'views/menu_actions.xml',
         'views/menu_views.xml',
         'views/user_view.xml',
@@ -12,9 +13,9 @@
         'views/cars_rental_view.xml',
         'views/rental_driver.xml',
         'views/tags.xml',
+        'views/fuel.xml',
         'data/sequence_data.xml',
         # 'views/settings.xml',
-        'security/ir.model.access.csv',    
     ],
     'demo' : [
         'demo/carpoint_user_demodata.xml',

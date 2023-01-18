@@ -4,5 +4,7 @@ carpoint.access_carpoint_cars_rental,access_carpoint_cars_rental,carpoint.model_
 carpoint.access_carpoint_rental_task,access_carpoint_rental_task,carpoint.model_carpoint_rental_task,base.group_user,1,1,1,1
 carpoint.access_rental_driver,access_rental_driver,carpoint.model_rental_driver,base.group_user,1,1,1,1
 carpoint.access_carpoint_tags,access_carpoint_tags,carpoint.model_carpoint_tags,base.group_user,1,1,1,1
+carpoint.access_carpoint_fuel,access_carpoint_fuel,carpoint.model_carpoint_fuel,base.group_user,1,1,1,1
+
 
 

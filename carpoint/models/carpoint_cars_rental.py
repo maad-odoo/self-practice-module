@@ -6,10 +6,11 @@ class carpointRentalCar(models.Model):
     _name = "carpoint.cars.rental"
     _description = "Car Point User Module"
     _inherit = ['mail.thread','mail.activity.mixin']
-    # _inherits="carpoint.fuel"
+    _inherits = {'carpoint.fuel' : 'fuel_id'}
     _order = "id desc"
 
     name = fields.Char(string="Car Name:",required=True,tracking=True)
+    fuel_id = fields.Many2one("carpoint.fuel")
     car_manuf_year = fields.Date(string="Cars Manufacturing Date:")
     car_company = fields.Char(string="Car Company:")
     car_color = fields.Char(string="Car Color:")
@@ -44,7 +45,7 @@ class carpointRentalCar(models.Model):
     active = fields.Boolean(default=True,tracking=True)
     state=fields.Selection(selection=[('vacant', 'Vacant'), ('on_road', 'On Road'),('on_service', 'On Service'),('in_active', 'In Active')],tracking=True)
     car_history=fields.One2many("carpoint.rental.task","car_name_id",string="Previous Activities",readonly=True)
-    disel=fields.
+    date = fields.Many2one("carpoint.fuel",'date')
 
     def action_to_vacant(self):
         for record in self:

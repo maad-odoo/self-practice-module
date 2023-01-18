@@ -13,4 +13,4 @@ class tags(models.Model):
 
     _sql_constraints = [
         ('check_tag', 'unique (name)', "Tag name cannot be repeated!"),
-   ]
+   ]    

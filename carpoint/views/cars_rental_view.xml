@@ -12,6 +12,7 @@
                     <field name="car_company" />
                     <field name="car_transmission" />
                     <field name="car_availability" />
+                    <field name="disel"/>
                 </tree>
             </field>
         </record>
@@ -42,6 +43,8 @@
                             <group>
                                 <field name="car_availability"/>
                                 <field name="car_no_plate"/>
+                                <field name="fuel_id"/> 
+                                <field name="disel"/>
                             </group>
                             <group>
                                 <field name="car_base_price"/>
