@@ -6,14 +6,23 @@ class carpointRentalCar(models.Model):
     _name = "carpoint.cars.rental"
     _description = "Car Point User Module"
     _inherit = ['mail.thread','mail.activity.mixin']
-    _inherits = {'carpoint.fuel' : 'fuel_id'}
     _order = "id desc"
 
     name = fields.Char(string="Car Name:",required=True,tracking=True)
-    fuel_id = fields.Many2one("carpoint.fuel")
-    car_manuf_year = fields.Date(string="Cars Manufacturing Date:")
     car_company = fields.Char(string="Car Company:")
     car_color = fields.Char(string="Car Color:")
+    car_no_plate = fields.Char("Number Plate:")
+    active = fields.Boolean(default=True,tracking=True)
+    car_manuf_year = fields.Date(string="Cars Manufacturing Date:")
+    car_fitness = fields.Date(string="Cars Fitness:")
+    car_insurance = fields.Date(string="Insurance Date",tracking=True)
+    car_insurance_Expirey = fields.Date(string="Insurance expirey",tracking=True)
+    car_service = fields.Date("Latest Service Date:",tracking=True)
+    car_next_service = fields.Date("Upcomming Service:",tracking=True)
+    car_engine = fields.Integer('Engine Displacement (cc):')
+    car_avg_milage = fields.Integer('Average Milage:')
+    car_totalkm = fields.Integer('Total KM:')
+    car_fuel = fields.Selection(selection=[('petrol','Petrol'),('disel','Disel'),('cng','CNG'),('ev','EV')])
     car_transmission = fields.Selection(selection=[
         ('AT','Automatic Transmission (AT)'),
         ('MT','Manual Transmission (MT)'),
@@ -31,21 +40,20 @@ class carpointRentalCar(models.Model):
         ('minibus','Mini Bus')])
     # car_image=fields.Image(string="Image")
     car_seating = fields.Selection(selection=[('2','2'),('4','4'),('5','5'),('7','7'),('12','12'),('14','14')])
-    car_totalkm = fields.Integer('Total KM:')
     car_availability = fields.Selection(selection=[('available','Available'),('booked','Booked'),('undermain','Under Maintainance')],tracking=True)
-    car_engine = fields.Integer('Engine Displacement (cc):')
-    car_avg_milage = fields.Integer('Average Milage:')
-    car_fitness = fields.Date(string="Cars Fitness:")
-    car_insurance = fields.Date(string="Insurance Date",tracking=True)
-    car_insurance_Expirey = fields.Date(string="Insurance expirey",tracking=True)
-    car_service = fields.Date("Latest Service Date:",tracking=True)
-    car_next_service = fields.Date("Upcomming Service:",tracking=True)
-    car_no_plate = fields.Char("Number Plate:")
-    car_base_price = fields.Float("Base Fair (Per KM):")
-    active = fields.Boolean(default=True,tracking=True)
     state=fields.Selection(selection=[('vacant', 'Vacant'), ('on_road', 'On Road'),('on_service', 'On Service'),('in_active', 'In Active')],tracking=True)
     car_history=fields.One2many("carpoint.rental.task","car_name_id",string="Previous Activities",readonly=True)
-    date = fields.Many2one("carpoint.fuel",'date')
+    
+
+
+    # ------------------------ snakes---------------------------------
+    snake_id = fields.Many2one('carpoint.cars.rental',string="Snake:")
+    snake_field_ids = fields.One2many('carpoint.cars.rental','snake_id',domain=[('active', '=', True)])
+
+
+    # disel = fields.Float(string="Disel")
+    # petrol = fields.Float(string="Petrol")
+    # cng = fields.Float(string="CNG")
 
     def action_to_vacant(self):
         for record in self:

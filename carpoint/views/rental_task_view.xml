@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
 <!-- ____________________________Tree View______________________________________ !-->
-        <record id="carpoint_rental_task_tree" model="ir.ui.view">
-            <field name="name">carpoint.rental.task.tree.view</field>
-            <field name="model">carpoint.rental.task</field>
-            <field name="arch" type="xml">
-                <tree decoration-primary="state=='new'" decoration-success="state=='inprogress'" decoration-info="state=='close'">
-                    <field name="seq_name" />
-                    <field name="task_user"/> 
-                    <field name="tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
-                    <field name="car_name_id"/>
-                    <field name="task_DOS"/>
-                    <field name="task_end"/>
-                    <field name="state"/>
-                </tree>
-            </field>
-        </record>
-
-<!-- form -->
-
-    </data><record id="carpoint_rental_task_form" model="ir.ui.view">
+    <record id="carpoint_rental_task_tree" model="ir.ui.view">
+        <field name="name">carpoint.rental.task.tree.view</field>
+        <field name="model">carpoint.rental.task</field>
+        <field name="arch" type="xml">
+            <tree decoration-primary="state=='new'" decoration-success="state=='inprogress'" decoration-info="state=='close'">
+                <field name="seq_name" />
+                <field name="task_user"/> 
+                <field name="tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="car_name_id"/>
+                <field name="task_DOS"/>
+                <field name="task_end"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+<!-- ___________________________Form View_______________________________________ -->
+    <record id="carpoint_rental_task_form" model="ir.ui.view">
             <field name="name">carpoint.rental.task.form</field>
             <field name="model">carpoint.rental.task</field>
             <field name="arch" type="xml">
@@ -41,11 +38,13 @@
                             </group>
                             <group>
                                 <field name="mode"/>
-                                <field name="start_location"/>
+                                <field name="fuel_price"/>
+                                <field name="car_fuel"/> 
                             </group>
                             <group>
                                 <field name="end_location"/>
-                                <field name="state"/>
+                                <field name="start_location"/>
+                                <field name="total_distance"/>
                                 <field name="total_price"/> 
                             </group>
                             <notebook>
@@ -64,7 +63,7 @@
                                         <field name="car_category"/>
                                         <field name="car_seating"/>
                                         <field name="car_color"/>
-                                        <field name="car_price"/> 
+                                        <field name="car_avg_milage"/>
                                     </group>
                                 </page>
                             </notebook>
@@ -77,19 +76,18 @@
                     </div>
                 </form>
             </field>
-        </record> 
-
-        <record id="rental_task_search" model="ir.ui.view">
-            <field name="name">carpoint.search.panel</field>
-            <field name="model">carpoint.rental.task</field>
-            <field name="arch" type="xml">
-                <search position="inside">
-                    <searchpanel>
-                        <field name="task_user" enable_counters="1"/>
-                        <field name="state" enable_counters="1"/>
-                        <field name="car_name_id" enable_counters="1"/>
-                    </searchpanel>
-                </search>
-            </field>
-        </record>
+    </record>
+    <record id="rental_task_search" model="ir.ui.view">
+        <field name="name">carpoint.search.panel</field>
+        <field name="model">carpoint.rental.task</field>
+        <field name="arch" type="xml">
+            <search position="inside">
+                <searchpanel>
+                    <field name="task_user" enable_counters="1"/>
+                    <field name="state" enable_counters="1"/>
+                    <field name="car_name_id" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
 </odoo>

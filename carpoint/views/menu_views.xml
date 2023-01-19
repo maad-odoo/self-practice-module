@@ -21,8 +21,5 @@
         <menuitem id="carpoint_tags" name="Tags" sequence="14">
             <menuitem id="carpoint_menu_tags" action="tags_action"/>
         </menuitem>
-        <menuitem id="carpoint_fuels" name="Fuels" sequence="15">
-            <menuitem id="carpoint_fuels_menu" action="action_carpoint_fuels"/>
-        </menuitem>
     </menuitem>
 </odoo>

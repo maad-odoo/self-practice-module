@@ -1,87 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
 <!-- ____________________________Tree View______________________________________ !-->
-        <record id="carpoint_user_tree" model="ir.ui.view">
-            <field name="name">carpoint.users.tree.view</field>
-            <field name="model">carpoint.users</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <!-- <field class="text-start" name="user_uid"/> -->
-                    <field name="name"/> 
-                    <field name="user_contact"/>
-                    <field name="user_address"/>
-                    <field name="user_DOS"/>
-                </tree>
-            </field>
-        </record>
-
-        <record id="increment_user_field_sequence" model="ir.sequence">
-                <field name="name">Field Incrementation</field>
-                <field name="code">increment_user_field</field>
-                <field name="prefix">00</field>
-                <field name="padding">3</field>
-                <field name="company_id" eval="False"/>
-        </record>
+    <record id="carpoint_user_tree" model="ir.ui.view">
+        <field name="name">carpoint.users.tree.view</field>
+        <field name="model">carpoint.users</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/> 
+                <field name="user_contact"/>
+                <field name="user_address"/>
+                <field name="user_DOS"/>
+            </tree>
+        </field>
+    </record>
 <!-- ____________________________Form View______________________________________ !-->
-        <record id="carpoint_user_form" model="ir.ui.view">
-            <field name="name">carpoint.user.form</field>
-            <field name="model">carpoint.users</field>
-            <field name="arch" type="xml">
-                <form string="user_form">
-                <!-- Header Section -->
-                    <header>
-                        <field name="state" widget="statusbar" options="{'clickable':'1'}"/>  
-                        <button name="action_to_on_road" type="object" string="On Road"/>   
-                        <button name="action_to_in_active" type="object" string="In Active"/>                 
-                    </header>
-                <!-- / Header Section -->
-                    <sheet>
-                        <label for="name" string="Name"/>
-                        <h1><field name="name" nolabel="1"/></h1>
-                        <group style="margin-top:30px">
-                            <field name="user_purpose"/>
+    <record id="carpoint_user_form" model="ir.ui.view">
+        <field name="name">carpoint.user.form</field>
+        <field name="model">carpoint.users</field>
+        <field name="arch" type="xml">
+            <form string="user_form">
+            <!-- Header Section -->
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable':'1'}"/>  
+                    <button name="action_to_on_road" type="object" string="On Road"/>   
+                    <button name="action_to_in_active" type="object" string="In Active"/>                 
+                </header>
+            <!-- / Header Section -->
+                <sheet>
+                    <label for="name" string="Name"/>
+                    <h1><field name="name" nolabel="1"/></h1>
+                    <group style="margin-top:30px">
+                        <field name="user_purpose"/>
+                    </group>
+                    <group>
+                        <field name="user_DOS"/>
+                    </group>
+                    <notebook>
+                        <page string="Personal Info">
+                        <group>
+                            <field name="user_contact"/>
                         </group>
                         <group>
-                            <field name="user_DOS"/>
+                            <field name="user_address"/>
                         </group>
-                        <notebook>
-                            <page string="Personal Info">
-                            <group>
-                                <field name="user_contact"/>
-                            </group>
-                            <group>
-                                <field name="user_address"/>
-                            </group>
-                            </page>
-                        </notebook>
-                    </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" widget="mail_followers" />
-                        <field name="activity_ids"></field>
-                        <field name="message_ids" widget="mail_thread" />
-                    </div>
-                </form>
-            </field>
-        </record> 
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids"></field>
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record> 
 <!-- ____________________________Search View______________________________________ !-->
-        <record id="carpoint_user_search" model="ir.ui.view">
-            <field name="name">carpoint_user_search</field>
-            <field name="model">carpoint.users</field>
-            <field name="arch" type="xml">
-                <search string="Search Users">
-                    <field name="name" />
-                    <field name="user_purpose"/>
-                    <field name="user_contact"/>
-                    <field name="user_address"/>
-                    <field name="user_DOS"/>
-        <!-- Filter and Group_by View !-->    
-                    <group expand="0" string="Group By">
-                        <filter string="Purpose" name="user_purpose" context="{'group_by':'user_purpose','residual':'False'}"/>
-                    </group>
-        <!-- //Filter and Group_by View !-->
-                </search>
-            </field>
-        </record>
-    </data>
+    <record id="carpoint_user_search" model="ir.ui.view">
+        <field name="name">carpoint_user_search</field>
+        <field name="model">carpoint.users</field>
+        <field name="arch" type="xml">
+            <search string="Search Users">
+                <field name="name" />
+                <field name="user_purpose"/>
+                <field name="user_contact"/>
+                <field name="user_address"/>
+                <field name="user_DOS"/>
+    <!-- Filter and Group_by View !-->    
+                <group expand="0" string="Group By">
+                    <filter string="Purpose" name="user_purpose" context="{'group_by':'user_purpose','residual':'False'}"/>
+                </group>
+    <!-- //Filter and Group_by View !-->
+            </search>
+        </field>
+    </record>
+
 </odoo>

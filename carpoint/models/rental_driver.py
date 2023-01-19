@@ -10,11 +10,11 @@ class rentalDriver(models.Model):
 
 
     driver_name = fields.Char(string="Name")
-    driver_add=fields.Text(string="Address")
     driver_contact=fields.Char(string="Contact")
+    driver_DOJ=fields.Date()
+    driver_add=fields.Text(string="Address")
     driver_status=fields.Selection(selection=[('off_trip','Off Trip'),('on_trip','On Trip'),('on_leave','On Leave')],tracking=True)
-    driver_DOJ=fields.Date()    
-
+        
     def action_to_off_trip(self):
         for record in self:
             record.status ='off_trip'

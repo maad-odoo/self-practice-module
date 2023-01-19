@@ -7,7 +7,7 @@
                 <field name="res_model">carpoint.rental.task</field>
                 <field name="view_mode">tree,form</field>
         </record>
-        <!-- User menu -->
+                <!-- User menu -->
         <record id="carpoint_allusers_action" model="ir.actions.act_window">
                 <field name="name">All Users</field>
                 <field name="res_model">carpoint.users</field>
@@ -19,21 +19,16 @@
                 <field name="res_model">carpoint.cars.rental</field>
                 <field name="view_mode">kanban,tree,form</field>
         </record>
-        <!-- ________________ Employee Menu__________________________ -->
                 <!-- Driver -->
         <record id="rental_emp_driver" model="ir.actions.act_window">
                 <field name="name">Driver</field>
                 <field name="res_model">rental.driver</field>
                 <field name="view_mode">tree,form</field>
         </record>
+                <!-- Tags -->
         <record id="tags_action" model="ir.actions.act_window">
                 <field name="name">Tags</field>
                 <field name="res_model">carpoint.tags</field>
-                <field name="view_mode">tree,form</field>
-        </record>
-        <record id="action_carpoint_fuels" model="ir.actions.act_window">
-                <field name="name">Fuels</field>
-                <field name="res_model">carpoint.fuel</field>
                 <field name="view_mode">tree,form</field>
         </record>
 

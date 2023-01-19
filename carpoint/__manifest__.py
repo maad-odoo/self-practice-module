@@ -13,7 +13,6 @@
         'views/cars_rental_view.xml',
         'views/rental_driver.xml',
         'views/tags.xml',
-        'views/fuel.xml',
         'data/sequence_data.xml',
         # 'views/settings.xml',
     ],

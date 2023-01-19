@@ -12,7 +12,6 @@
                     <field name="car_company" />
                     <field name="car_transmission" />
                     <field name="car_availability" />
-                    <field name="disel"/>
                 </tree>
             </field>
         </record>
@@ -43,11 +42,10 @@
                             <group>
                                 <field name="car_availability"/>
                                 <field name="car_no_plate"/>
-                                <field name="fuel_id"/> 
-                                <field name="disel"/>
+                                <field name="snake_id"/>
                             </group>
                             <group>
-                                <field name="car_base_price"/>
+                                <field name="car_fuel"/>                  
                             </group>
                             <notebook>
                                 <page string="Car Interior">
@@ -90,6 +88,14 @@
                                         </tree>
                                     </field>
                                 </page>
+                                <page string="Snake View">
+                                    <field name="snake_field_ids">
+                                        <tree>
+                                            <field name="name"/>
+                                            <field name="car_color"/>
+                                        </tree>
+                                    </field>
+                                </page>
                             </notebook>
                         </group>
                     </sheet>
@@ -101,24 +107,15 @@
                 </form>
             </field>
         </record>
-
         <record id="car_kanban_view" model="ir.ui.view">
             <field name="name">carpoint.kanban.car.view</field>
             <field name="model">carpoint.cars.rental</field>
             <field name="arch" type="xml">
                 <kanban>
-                    <field name="name"/>
-                    <!-- <field name="car_image"/> -->
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_global_click">
-                            <!-- <div class="o_kanban_image">
-                                <img class="o_kanban_image_inner_pic"
-                                     t-att-src="kanban_image('carpoint.cars.rental','car_image',record.name.raw_value)"
-                                />
-                            </div> -->
                             <div class="oe_kanban_details d-flex flex-column">
-                                <!-- <span t-esc="record.name.raw_value"/> -->
                                 <strong>
                                     <field name="name" />
                                 </strong>
@@ -132,6 +129,5 @@
                 </kanban>
             </field>
         </record>
-
     </data>
 </odoo>
