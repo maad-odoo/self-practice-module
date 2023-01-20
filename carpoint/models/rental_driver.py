@@ -6,6 +6,7 @@ class rentalDriver(models.Model):
     _name="rental.driver"
     _description="Drivers of the rented car"
     _inherit = ['mail.thread','mail.activity.mixin']
+    _rec_name = "driver_name"
     _order = "id desc"
 
 

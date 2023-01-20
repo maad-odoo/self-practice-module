@@ -5,7 +5,7 @@
         <field name="name">carpoint.rental.task.tree.view</field>
         <field name="model">carpoint.rental.task</field>
         <field name="arch" type="xml">
-            <tree decoration-primary="state=='new'" decoration-success="state=='inprogress'" decoration-info="state=='close'">
+            <tree decoration-primary="state=='new'" decoration-success="state=='inprogress'" decoration-danger="state=='close'">
                 <field name="seq_name" />
                 <field name="task_user"/> 
                 <field name="tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
@@ -38,6 +38,7 @@
                             </group>
                             <group>
                                 <field name="mode"/>
+                                <field name="driver_id" attrs="{'invisible' : [('mode','=','self_driver')]}"/>
                                 <field name="fuel_price"/>
                                 <field name="car_fuel"/> 
                             </group>

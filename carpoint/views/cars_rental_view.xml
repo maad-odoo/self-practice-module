@@ -29,75 +29,84 @@
                         <button name="action_to_in_active" type="object" string="In Active"/> 
                     </header>
                     <sheet>
-                    <label for="name">Car Name</label>
-                    <h1><field name="name"/></h1>
-                        <group>
+                        <div class="oe_button_box" name="button_box">
+                            <button
+                                class="oe_stat_button"
+                                type="action"
+                                name="%(carpoint_cars_stat_button)d"
+                                icon="fa-briefcase">
+                                <field name="task_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <label for="name">Car Name</label>
+                        <h1><field name="name"/></h1>
                             <group>
-                                <!-- <field name="car_image" class="oe_avatar" widgte="image"/> -->
+                                <group>
+                                    <!-- <field name="car_image" class="oe_avatar" widgte="image"/> -->
+                                </group>
+                                <group>
+                                    <field name="car_company"/>
+                                    <field name="car_category"/>
+                                </group>
+                                <group>
+                                    <field name="car_availability"/>
+                                    <field name="car_no_plate"/>
+                                    <field name="snake_id"/>
+                                </group>
+                                <group>
+                                    <field name="car_fuel"/>                  
+                                </group>
+                                <notebook>
+                                    <page string="Car Interior">
+                                        <group>
+                                            <field name="car_transmission" />
+                                        </group>
+                                        <group>
+                                            <field name="car_seating" />
+                                        </group>
+                                        <group>
+                                            <field name="car_engine" />
+                                        </group>
+                                    </page>
+                                    <page string="Car Exterior">
+                                        <group>
+                                            <field name="car_color" />
+                                        </group>
+                                    </page>
+                                    <page string="Other Info">
+                                        <group>
+                                            <field name="car_insurance" />
+                                            <field name="car_insurance_Expirey" />
+                                        </group>
+                                        <group>
+                                            <field name="car_service" />
+                                            <field name="car_next_service" />
+                                        </group>
+                                        <group>
+                                            <field name="car_avg_milage" />
+                                            <field name="car_manuf_year" />
+                                            <field name="car_fitness" />
+                                            <field name="car_totalkm" />
+                                        </group>
+                                    </page>
+                                    <page string="Previous Activities">
+                                        <field name="car_history">
+                                            <tree>
+                                                <field name="seq_name" />
+                                                <field name="task_user" />
+                                            </tree>
+                                        </field>
+                                    </page>
+                                    <page string="Snake View">
+                                        <field name="snake_field_ids">
+                                            <tree>
+                                                <field name="name"/>
+                                                <field name="car_color"/>
+                                            </tree>
+                                        </field>
+                                    </page>
+                                </notebook>
                             </group>
-                            <group>
-                                <field name="car_company"/>
-                                <field name="car_category"/>
-                            </group>
-                            <group>
-                                <field name="car_availability"/>
-                                <field name="car_no_plate"/>
-                                <field name="snake_id"/>
-                            </group>
-                            <group>
-                                <field name="car_fuel"/>                  
-                            </group>
-                            <notebook>
-                                <page string="Car Interior">
-                                    <group>
-                                        <field name="car_transmission" />
-                                    </group>
-                                    <group>
-                                        <field name="car_seating" />
-                                    </group>
-                                    <group>
-                                        <field name="car_engine" />
-                                    </group>
-                                </page>
-                                <page string="Car Exterior">
-                                    <group>
-                                        <field name="car_color" />
-                                    </group>
-                                </page>
-                                <page string="Other Info">
-                                    <group>
-                                        <field name="car_insurance" />
-                                        <field name="car_insurance_Expirey" />
-                                    </group>
-                                    <group>
-                                        <field name="car_service" />
-                                        <field name="car_next_service" />
-                                    </group>
-                                    <group>
-                                        <field name="car_avg_milage" />
-                                        <field name="car_manuf_year" />
-                                        <field name="car_fitness" />
-                                        <field name="car_totalkm" />
-                                    </group>
-                                </page>
-                                <page string="Previous Activities">
-                                    <field name="car_history">
-                                        <tree>
-                                            <field name="seq_name" />
-                                            <field name="task_user" />
-                                        </tree>
-                                    </field>
-                                </page>
-                                <page string="Snake View">
-                                    <field name="snake_field_ids">
-                                        <tree>
-                                            <field name="name"/>
-                                            <field name="car_color"/>
-                                        </tree>
-                                    </field>
-                                </page>
-                            </notebook>
-                        </group>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" />

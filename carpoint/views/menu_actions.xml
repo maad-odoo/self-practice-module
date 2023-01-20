@@ -31,7 +31,12 @@
                 <field name="res_model">carpoint.tags</field>
                 <field name="view_mode">tree,form</field>
         </record>
-
+        <record id="carpoint_cars_stat_button" model="ir.actions.act_window">
+                <field name="name">Tasks</field>
+                <field name="res_model">carpoint.rental.task</field>
+                <field name="view_mode">tree,form</field>
+                <field name="domain">[('car_name_id','=',active_id)]</field>
+        </record>
 </odoo>
         
 

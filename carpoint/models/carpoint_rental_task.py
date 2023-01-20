@@ -2,6 +2,8 @@
 
 from odoo import models, fields,api
 from dateutil.relativedelta import relativedelta
+from odoo.exceptions import ValidationError
+
 
 class carpointUser(models.Model):
     _name = "carpoint.rental.task"
@@ -18,20 +20,21 @@ class carpointUser(models.Model):
     active = fields.Boolean(default=True)
     task_DOS = fields.Date('Date of issue: ',default=lambda self:fields.Datetime.today())
     task_end = fields.Date(compute="compute_deadline",inverse="inverse_deadline")
-    fuel_price = fields.Float(string="Today's Fuel Price:")
+    fuel_price = fields.Float(string="Today's Fuel Price:",required=True)
     total_price = fields.Float(compute="compute_total_price",default=0)
-    validity=fields.Integer(string="Duration",tracking=True)
+    validity=fields.Integer(string="Duration",tracking=True,required=True)
     car_avg_milage = fields.Integer(related="car_name_id.car_avg_milage")
-    total_distance = fields.Integer(string="Total Distance: ")
+    total_distance = fields.Integer(string="Total Distance: ",required=True)
     car_transmission = fields.Selection(related="car_name_id.car_transmission")
     car_category = fields.Selection(related="car_name_id.car_category")
     car_seating = fields.Selection(related="car_name_id.car_seating")
     car_fuel = fields.Selection(related="car_name_id.car_fuel")
-    mode=fields.Selection(selection=[('withdriver','With Driver'),('selfdriver','Self Driving')],tracking=True)
+    mode=fields.Selection(selection=[('with_driver','With Driver'),('self_driver','Self Driving')],tracking=True,required=True,default="self_driver")
     state=fields.Selection(selection=[('new', 'New'), ('inprogress', 'In Progress'),('close','Close')],default='new',tracking=True)
     tags=fields.Many2many("carpoint.tags",string="Tags")
     task_user = fields.Many2one('carpoint.users',required=True,tracking=True)
-    car_name_id = fields.Many2one("carpoint.cars.rental",string="Car Name")
+    car_name_id = fields.Many2one("carpoint.cars.rental",string="Car Name",required=True)
+    driver_id = fields.Many2one("rental.driver",string="Driver")
 
     def action_to_in_progress(self):
         for record in self:
@@ -49,11 +52,32 @@ class carpointUser(models.Model):
     @api.depends('fuel_price')
     def compute_total_price(self):
         for record in self:
+            if(record.total_distance == 0):
+                raise ValidationError("Fill the Total Distance")
+            if(record.car_avg_milage == 0):
+                raise ValidationError("Please select a car name")
             fuel_cost = (record.total_distance/record.car_avg_milage*record.fuel_price)
-            if record.mode == 'withdriver':
-                self.total_price = 2.4*fuel_cost
+            if record.validity==0:
+                if record.mode == 'withdriver':
+                    self.total_price = 2.4*fuel_cost+400
+                else:
+                    self.total_price = 2.0*fuel_cost+400
             else:
-                self.total_price = 2.0*fuel_cost
+                if record.mode == 'withdriver':
+                    self.total_price = 2.4*fuel_cost+1.4*fuel_cost+record.validity*800
+                else:
+                    self.total_price = 2.0*fuel_cost+1.4*fuel_cost+record.validity*400
+     
+    @api.depends('validity','task_end')
+    def compute_deadline(self):
+        for record in self:
+            record.task_end= record.task_DOS + relativedelta(days=record.validity)
+    
+    def inverse_deadline(self):
+        for record in self:
+            record.validity = (record.task_end - record.task_DOS).days
+
+
     """ Fuel_cost = total_distance/car_milage * fuel_price
         240% consists of :
             100% Fuel Cost
@@ -68,15 +92,4 @@ class carpointUser(models.Model):
             35% Profit
             15% Taxes
             10% Insurance
-    """ 
-
-
-    
-    @api.depends('validity','task_end')
-    def compute_deadline(self):
-        for record in self:
-            record.task_end= record.task_DOS + relativedelta(days=record.validity)
-    
-    def inverse_deadline(self):
-        for record in self:
-            record.validity = (record.task_end - record.task_DOS).days
+    """
