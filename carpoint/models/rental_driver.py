@@ -18,12 +18,12 @@ class rentalDriver(models.Model):
         
     def action_to_off_trip(self):
         for record in self:
-            record.status ='off_trip'
+            record.driver_status ='off_trip'
 
     def action_to_on_trip(self):
         for record in self:
-            record.status ='on_trip'
+            record.driver_status ='on_trip'
 
     def action_to_on_leave(self):
         for record in self:
-            record.status ='on_leave'
+            record.driver_status ='on_leave'

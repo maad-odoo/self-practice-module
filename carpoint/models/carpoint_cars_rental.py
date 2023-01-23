@@ -41,7 +41,7 @@ class carpointRentalCar(models.Model):
         ('minibus','Mini Bus')],required=True)
     # car_image=fields.Image(string="Image")
     car_seating = fields.Selection(selection=[('2','2'),('4','4'),('5','5'),('7','7'),('12','12'),('14','14')],required=True)
-    car_availability = fields.Selection(selection=[('available','Available'),('booked','Booked'),('undermain','Under Maintainance')],tracking=True)
+    car_availability = fields.Selection(selection=[('available','Available'),('booked','Booked'),('under_maintainance','Under Maintainance')],tracking=True)
     state=fields.Selection(selection=[('vacant', 'Vacant'), ('on_road', 'On Road'),('on_service', 'On Service'),('in_active', 'In Active')],tracking=True)
     car_history=fields.One2many("carpoint.rental.task","car_name_id",string="Previous Activities",readonly=True)
     # ------------------------ snakes---------------------------------

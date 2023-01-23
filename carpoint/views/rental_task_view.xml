@@ -7,8 +7,8 @@
         <field name="arch" type="xml">
             <tree decoration-primary="state=='new'" decoration-success="state=='inprogress'" decoration-danger="state=='close'">
                 <field name="seq_name" />
-                <field name="task_user"/> 
-                <field name="tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="task_user_id"/> 
+                <field name="tags_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="car_name_id"/>
                 <field name="task_DOS"/>
                 <field name="task_end"/>
@@ -30,11 +30,14 @@
                     </header>
                 <!-- / Header Section -->
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <widget name="web_ribbon" title="Closed" bg_color="bg-danger" attrs="{'invisible': [('state', '!=', 'close')]}"/>
                         <h1><field name="seq_name" nolabel="1"/></h1>
                         <group>
                             <group>
-                                <field name="task_user"/>
-                                <field name="tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                <field name="task_user_id"/>
+                                <field name="tags_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                             </group>
                             <group>
                                 <field name="mode"/>
@@ -78,17 +81,26 @@
                 </form>
             </field>
     </record>
-    <record id="rental_task_search" model="ir.ui.view">
-        <field name="name">carpoint.search.panel</field>
+    <record id="carpoint_rental_task_search" model="ir.ui.view">
+        <field name="name">rental.task.search</field>
         <field name="model">carpoint.rental.task</field>
         <field name="arch" type="xml">
-            <search position="inside">
-                <searchpanel>
-                    <field name="task_user" enable_counters="1"/>
-                    <field name="state" enable_counters="1"/>
-                    <field name="car_name_id" enable_counters="1"/>
-                </searchpanel>
+            <search string="Search...">
+                <field name="seq_name" />
+                <field name="total_price" filter_domain="[('total_price', '>', self)]" />
+                <field name="task_user_id" />
+                <field name="tags_ids" />
+                <field name="mode" />
+                <field name="driver_id" />
+                <filter name="mode" string="Driving Mode" domain="[('mode', '=', 'with_driver')]" />
+                <filter name="available" string="Available" domain="[('state','=','new')]"/>
+                <filter string="Archived" name="active" domain="[('active','=',False)]"/>
             </search>
+            <searchpanel>
+                <field name="task_user_id" enable_counters="1"/>
+                <field name="state" enable_counters="1"/>
+                <field name="car_name_id" enable_counters="1"/>
+            </searchpanel>
         </field>
     </record>
 </odoo>
