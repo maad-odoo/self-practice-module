@@ -87,7 +87,8 @@
         <field name="arch" type="xml">
             <search string="Search...">
                 <field name="seq_name" />
-                <field name="total_price" filter_domain="[('total_price', '>', self)]" />
+                <field name="total_price"
+                    filter_domain="[('total_price', '>', self)]" />
                 <field name="task_user_id" />
                 <field name="tags_ids" />
                 <field name="mode" />

@@ -34,23 +34,23 @@ class carpointUser(models.Model):
     tags_ids=fields.Many2many("carpoint.tags",string="Tags")
     task_user_id = fields.Many2one('carpoint.users',required=True,tracking=True)
     car_name_id = fields.Many2one("carpoint.cars.rental",string="Car Name",required=True,domain=[('state','in',['vacant'])])
-    driver_id = fields.Many2one("rental.driver",string="Driver",domain=[('driver_status','in',['off_trip'])])
+    driver_id = fields.Many2one("carpoint.employee",string="Driver",domain=[('driver_status','in',['off_trip'])])
 
-    @api.depends('state','car_name_id.state','driver_id.driver_status')
+    @api.depends('state','car_name_id.state','employee_id.status')
     def action_to_in_progress(self):
         for record in self:
             record.state ='inprogress'
             self.car_name_id.state = 'on_road'
             if record.mode == 'with_driver':
-                self.driver_id.driver_status = 'on_trip'
+                self.employee_id.status = 'on_trip'
     
-    @api.depends('state','car_namr_id.state','driver_id.driver_status')
+    @api.depends('state','car_namr_id.state','employee_id.status')
     def action_to_close(self):
         for record in self:
             record.state ='close'
             self.car_name_id.state = 'vacant'
             if record.mode == 'with_driver':
-                self.driver_id.driver_status = 'off_trip'
+                self.employee_id.status = 'off_trip'
     
     @api.model
     def create(self,vals):

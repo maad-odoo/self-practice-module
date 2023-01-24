@@ -16,7 +16,4 @@
         'data/sequence_data.xml',
         # 'views/settings.xml',
     ],
-    'demo' : [
-        'demo/carpoint_user_demodata.xml',
-    ]
 }
