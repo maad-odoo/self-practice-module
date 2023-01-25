@@ -31,7 +31,7 @@ class carpointUser(models.Model):
     car_fuel = fields.Selection(related="car_name_id.car_fuel")
     mode=fields.Selection(selection=[('with_driver','With Driver'),('self_driver','Self Driving')],tracking=True,required=True,default="self_driver")
     state=fields.Selection(selection=[('new', 'New'), ('inprogress', 'In Progress'),('close','Close')],default='new',tracking=True)
-    tags_ids=fields.Many2many("carpoint.tags",string="Tags")
+    tags_ids=fields.Many2many("carpoint.rental.tags",string="Tags")
     task_user_id = fields.Many2one('carpoint.users',required=True,tracking=True)
     car_name_id = fields.Many2one("carpoint.cars.rental",string="Car Name",required=True,domain=[('state','in',['vacant'])])
     driver_id = fields.Many2one("carpoint.employee",string="Driver",domain=[('driver_status','in',['off_trip'])])

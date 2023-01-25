@@ -2,9 +2,9 @@
 
 from odoo import fields,models
 
-class tags(models.Model):
-    _name = "carpoint.tags"
-    _description = "Carpoint Tags Model"
+class repairingtags(models.Model):
+    _name = "carpoint.repairing.tags"
+    _description = "Carpoint Repairing Tags Model"
     _order = "id desc"
 
 

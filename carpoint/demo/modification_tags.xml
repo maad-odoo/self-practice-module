@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="carpoint.modification.tags" id="modification_tags_data1">
+            <field name="name">Full Body Paint</field>
+            <field name="color">10</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data2">
+            <field name="name">Scratch Paint</field>
+            <field name="color">1</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data3">
+            <field name="name">Patch Paint</field>
+            <field name="color">2</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data4">
+            <field name="name">Alloywheels Painting</field>
+            <field name="color">3</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data5">
+            <field name="name">Brake Calipers Painting</field>
+            <field name="color">4</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data6">
+            <field name="name">Underbody Painting</field>
+            <field name="color">5</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data7">
+            <field name="name">Anti-rust Coat Painting</field>
+            <field name="color">6</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data8">
+            <field name="name">Custom Painting</field>
+            <field name="color">7</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data9">
+            <field name="name">Exterior Custom Modification</field>
+            <field name="color">8</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data10">
+            <field name="name">Engine Airintake mod</field>
+            <field name="color">9</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data11">
+            <field name="name">Engine Airpipe mod</field>
+            <field name="color">10</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data12">
+            <field name="name">Engine Air Filter mod</field>
+            <field name="color">1</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data13">
+            <field name="name">Engine ECU Upgrade</field>
+            <field name="color">2</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data14">
+            <field name="name">Engine ECU remapping</field>
+            <field name="color">3</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data15">
+            <field name="name">Exhaust Mod</field>
+            <field name="color">4</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data16">
+            <field name="name">Exhaust Manifold</field>
+            <field name="color">5</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data17">
+            <field name="name">Engine SuperCharger</field>
+            <field name="color">6</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data18">
+            <field name="name">Engine Performance Chip</field>
+            <field name="color">7</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data19">
+            <field name="name">Engine Weight Reduction</field>
+            <field name="color">8</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data20">
+            <field name="name">Interior Seat Cover</field>
+            <field name="color">9</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data21">
+            <field name="name">Interior Full Mod</field>
+            <field name="color">10</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data22">
+            <field name="name">Interior Custon</field>
+            <field name="color">1</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data23">
+            <field name="name">Interior Infotainment</field>
+            <field name="color">2</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data24">
+            <field name="name">Interior Custom</field>
+            <field name="color">3</field>
+        </record>
+        <record model="carpoint.modification.tags" id="modification_tags_data25">
+            <field name="name">Interior fully custom</field>
+            <field name="color">4</field>
+        </record>
+    </data>
+</odoo>

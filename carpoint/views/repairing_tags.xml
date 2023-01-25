@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="carpoint_tags_tree" model="ir.ui.view">
-        <field name="name">carpoint.tags.tree</field>
-        <field name="model">carpoint.tags</field>
+    <record id="carpoint_repairing_tags" model="ir.ui.view">
+        <field name="name">carpoint.repairing.tags</field>
+        <field name="model">carpoint.repairing.tags</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
                 <field name="name" />

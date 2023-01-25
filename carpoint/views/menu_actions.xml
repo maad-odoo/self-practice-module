@@ -10,12 +10,12 @@
         </record>
         <record id="carpoint_modification_action" model="ir.actions.act_window">
                 <field name="name">Modification Task</field>
-                <field name="res_model">carpoint.rental.task</field>
+                <field name="res_model">carpoint.modification.task</field>
                 <field name="view_mode">tree,form</field>
         </record>
-        <record id="carpoint_servicing_action" model="ir.actions.act_window">
-                <field name="name">Servicing Task</field>
-                <field name="res_model">carpoint.rental.task</field>
+        <record id="carpoint_repairing_action" model="ir.actions.act_window">
+                <field name="name">Repairing Task</field>
+                <field name="res_model">carpoint.repairing.task</field>
                 <field name="view_mode">tree,form</field>
         </record>
         <!-- _____________User menu_______________ -->
@@ -35,8 +35,8 @@
                 <field name="res_model">carpoint.cars.rental</field>
                 <field name="view_mode">kanban,tree,form</field>
         </record>
-        <record id="servicing_car_action" model="ir.actions.act_window">
-                <field name="name">Servicing Cars</field>
+        <record id="repair_car_action" model="ir.actions.act_window">
+                <field name="name">Repairing Cars</field>
                 <field name="res_model">carpoint.cars.rental</field>
                 <field name="view_mode">kanban,tree,form</field>
         </record>
@@ -48,8 +48,18 @@
         </record>
         <!-- _____________Tags_____________________ -->
         <record id="tags_action" model="ir.actions.act_window">
-                <field name="name">Tags</field>
-                <field name="res_model">carpoint.tags</field>
+                <field name="name">Rental Tags</field>
+                <field name="res_model">carpoint.rental.tags</field>
+                <field name="view_mode">tree,form</field>
+        </record>
+        <record id="modification_action" model="ir.actions.act_window">
+                <field name="name">Modification Tags</field>
+                <field name="res_model">carpoint.modification.tags</field>
+                <field name="view_mode">tree,form</field>
+        </record>
+        <record id="repair_action" model="ir.actions.act_window">
+                <field name="name">Reparing Tags</field>
+                <field name="res_model">carpoint.repairing.tags</field>
                 <field name="view_mode">tree,form</field>
         </record>
         <record id="carpoint_cars_stat_button" model="ir.actions.act_window">
