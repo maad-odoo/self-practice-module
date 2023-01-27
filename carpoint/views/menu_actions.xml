@@ -5,7 +5,7 @@
         <record id="carpoint_rental_action" model="ir.actions.act_window">
                 <field name="name">Rental Task</field>
                 <field name="res_model">carpoint.rental.task</field>
-                <field name="view_mode">tree,form</field>
+                <field name="view_mode">tree,kanban,form</field>
                 <field name="context">{"search_default_available":True}</field> 
         </record>
         <record id="carpoint_modification_action" model="ir.actions.act_window">

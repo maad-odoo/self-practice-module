@@ -16,19 +16,16 @@
             </tree>
         </field>
     </record>
-<!-- ___________________________Form View_______________________________________ -->
     <record id="carpoint_rental_task_form" model="ir.ui.view">
             <field name="name">carpoint.rental.task.form</field>
             <field name="model">carpoint.rental.task</field>
             <field name="arch" type="xml">
                 <form string="user_form">
-                <!-- Header Section -->
                     <header>
                         <field name="state" widget="statusbar" options="{'clickable':'1'}"/>
                         <button name="action_to_in_progress" type="object" string="In Progress"/>
                         <button name="action_to_close" type="object" string="Close"/>         
                     </header>
-                <!-- / Header Section -->
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
@@ -81,6 +78,28 @@
                 </form>
             </field>
     </record>
+    <record id="rental_task_kanban_view" model="ir.ui.view">
+        <field name="name">rental.kanban.view</field>
+        <field name="model">carpoint.rental.task</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="priority"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                        <div class="oe_kanban_details d-flex flex-column">
+                            <h2><field name="seq_name" /></h2>
+                            <field name="task_user_id"/>
+                            <field name="tags_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="car_name_id"/>
+                            <field name="priority" widget="priority"/>    
+                        </div>
+                    </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
     <record id="carpoint_rental_task_search" model="ir.ui.view">
         <field name="name">rental.task.search</field>
         <field name="model">carpoint.rental.task</field>
@@ -98,5 +117,5 @@
                 <filter string="Archived" name="active" domain="[('active','=',False)]"/>
             </search>
         </field>
-    </record>
+    </record> 
 </odoo>

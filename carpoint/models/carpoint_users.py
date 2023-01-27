@@ -16,8 +16,6 @@ class carpointUser(models.Model):
     state=fields.Selection(selection=[('new', 'New'), ('on_trip', 'On Trip'),('in_active','In Active')],default='new',tracking=True)
     user_address = fields.Text('Address : ')
     task_ids = fields.One2many('carpoint.rental.task','task_user_id')
-    mod_task = fields.One2many('carpoint.modification.task','user_id')
-
     
     def action_to_on_road(self):
         for record in self:

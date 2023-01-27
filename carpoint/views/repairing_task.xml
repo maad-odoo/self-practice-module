@@ -5,6 +5,8 @@
         <field name="model">carpoint.repairing.task</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="seq_name"/>
+                <field name="task_user_id"/>
                 <field name="repairing_category"/> 
                 <field name="repairing_desc"/>
                 <field name="repairing_car"/>
@@ -24,31 +26,35 @@
                     <!-- <button type="object" string="In Progress"/>
                     <button type="object" string="Done"/>
                     <button type="object" string="Review"/>
-                    <button type="object" string="Close"/>          -->
+                    <button type="object" string="Close"/> -->
                 </header>
             <!-- / Header Section -->
                 <sheet>
+                    <h1><field name="seq_name" nolabel="1"/></h1>
                     <group>
                         <group>
+                            <field name="task_user_id"/>
+                            <field name="tags_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                             <field name="repairing_category"/>
                         </group>
                         <group>
-                            <field name="repairing_desc"/>
+                            
                             <field name="repairing_car"/>
                             <field name="repairing_car_brand"/>
                             <field name="repairing_car_noplate"/> 
                         </group>
                         <notebook>
+                            <page string="Description">
+                                <group>
+                                    <field name="repairing_desc"/>
+                                </group>
+                            </page>
                             <page string="Date and Duration">
                                 <group>
                                     <field name="repairing_date"/> 
                                 </group>
                             </page>
-                            <page>
-                                <group>
-                                  
-                                </group>
-                            </page>
+                            
                         </notebook>
                     </group>
                 </sheet>
