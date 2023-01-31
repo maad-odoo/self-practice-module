@@ -5,6 +5,7 @@
         <field name="model">carpoint.modification.task</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="mod_name"/>
                 <field name="task_user_id"/>
                 <field name="modification_category"/> 
                 <field name="tags_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
@@ -30,7 +31,7 @@
                     </header>
                 <!-- / Header Section -->
                     <sheet>
-                        <h1><field name="seq_name" nolabel="1"/></h1>
+                        <h1><field name="mod_name" nolabel="1"/></h1>
                         <group>
                             <group>
                                 <field name="task_user_id"/>

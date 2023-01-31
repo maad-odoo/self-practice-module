@@ -45,7 +45,7 @@ class carpointRentalCar(models.Model):
     car_insurance_Expirey = fields.Date(string="Insurance expirey",tracking=True)
     car_service = fields.Date("Latest Service Date:",tracking=True)
     car_next_service = fields.Date("Upcomming Service:",tracking=True)
-    # ------------------------ snakes---------------------------------
+    # ------------------------ snakes--------------------------------                                                                                                                                                                                                                                                                                                                                                               
     snake_id = fields.Many2one('carpoint.cars.rental',string="Snake:")
     snake_field_ids = fields.One2many('carpoint.cars.rental','snake_id',domain=[('active', '=', True)])
 

@@ -5,7 +5,7 @@
         <field name="model">carpoint.repairing.task</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="seq_name"/>
+                <field name="rep_name"/>
                 <field name="task_user_id"/>
                 <field name="repairing_category"/> 
                 <field name="repairing_desc"/>
@@ -30,7 +30,7 @@
                 </header>
             <!-- / Header Section -->
                 <sheet>
-                    <h1><field name="seq_name" nolabel="1"/></h1>
+                    <h1><field name="rep_name" nolabel="1"/></h1>
                     <group>
                         <group>
                             <field name="task_user_id"/>

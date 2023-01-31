@@ -7,7 +7,7 @@ class repairingTask(models.Model):
     _description = "Carpoint Repairing Description"
     _inherit = ['mail.thread','mail.activity.mixin']
 
-    seq_name = fields.Char(string='Task Reference', required=True,readonly=True, default=lambda self: ('New'))
+    rep_name = fields.Char(string='Task Reference', required=True,readonly=True, default=lambda self: ('New'))
     task_user_id = fields.Many2one("carpoint.users",required=True)
     repairing_category = fields.Selection(selection=[
         ('servicing','General Servicing'),
@@ -34,6 +34,6 @@ class repairingTask(models.Model):
 
     @api.model
     def create(self,vals):
-        vals['seq_name'] = self.env['ir.sequence'].next_by_code('carpoint.rental.task')
+        vals['rep_name'] = self.env['ir.sequence'].next_by_code('carpoint.repairing.task')
         return super(repairingTask,self).create(vals)
     

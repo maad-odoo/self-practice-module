@@ -9,7 +9,7 @@ class modificationTask(models.Model):
     _inherit = ['mail.thread','mail.activity.mixin']
 
 
-    seq_name = fields.Char(string='Task Reference', required=True,readonly=True, default=lambda self: ('New'))
+    mod_name = fields.Char(string='Task Reference', required=True,readonly=True, default=lambda self: ('New'))
     task_user_id = fields.Many2one("carpoint.users",required=True)
     modification_category = fields.Selection(selection=[
         ('exterior','Exterior'),
@@ -37,6 +37,6 @@ class modificationTask(models.Model):
 
     @api.model
     def create(self,vals):
-        vals['seq_name'] = self.env['ir.sequence'].next_by_code('carpoint.rental.task')
+        vals['mod_name'] = self.env['ir.sequence'].next_by_code('carpoint.modification.task')
         return super(modificationTask,self).create(vals)
     

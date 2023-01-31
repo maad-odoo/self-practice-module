@@ -20,11 +20,11 @@ class carpointUser(models.Model):
     active = fields.Boolean(default=True)
     task_DOS = fields.Date('Date of issue: ',default=lambda self:fields.Datetime.today())
     task_end = fields.Date(compute="compute_deadline",inverse="inverse_deadline")
-    fuel_price = fields.Float(string="Today's Fuel Price:",required=True)
+    fuel_price = fields.Float(string="Today's Fuel Price:")
     total_price = fields.Float(compute="compute_total_price",default=0,store=True)
-    validity=fields.Integer(string="Duration",tracking=True,required=True)
+    validity=fields.Integer(string="Duration",tracking=True)
     car_avg_milage = fields.Integer(related="car_name_id.car_avg_milage")
-    total_distance = fields.Integer(string="Total Distance: ",required=True)
+    total_distance = fields.Integer(string="Total Distance: ")
     car_transmission = fields.Selection(related="car_name_id.car_transmission")
     car_category = fields.Selection(related="car_name_id.car_category")
     car_seating = fields.Selection(related="car_name_id.car_seating")
@@ -35,13 +35,14 @@ class carpointUser(models.Model):
         ('normal', 'Normal'),
         ('lowand', 'Lowand'),
         ('high','High')],
-        copy=False, default='normal', required=True)
-    mode=fields.Selection(selection=[('with_driver','With Driver'),('self_driver','Self Driving')],tracking=True,required=True,default="self_driver")
+        copy=False, default='normal')
+    mode=fields.Selection(selection=[('with_driver','With Driver'),('self_driver','Self Driving')],tracking=True,default="self_driver")
     state=fields.Selection(selection=[('new', 'New'), ('inprogress', 'In Progress'),('close','Close')],default='new',tracking=True)
     tags_ids=fields.Many2many("carpoint.rental.tags",string="Tags")
     task_user_id = fields.Many2one('carpoint.users',required=True)
     car_name_id = fields.Many2one("carpoint.cars.rental",string="Car Name",required=True,domain=[('state','in',['vacant'])])
     driver_id = fields.Many2one("carpoint.employee",string="Driver",domain=[('driver_status','in',['off_trip'])])
+    
 
     @api.depends('state','car_name_id.state','employee_id.status')
     def action_to_in_progress(self):
@@ -62,8 +63,9 @@ class carpointUser(models.Model):
     @api.model
     def create(self,vals):
         vals['seq_name'] = self.env['ir.sequence'].next_by_code('carpoint.rental.task')
-        # if self.env['carpoint.rental.task'].browse(vals['state']) = 'new'
-        #     print("Hello")
+        task = self.env['carpoint.rental.task'].search([])
+        tasks = self.env['carpoint.rental.task'].mapped('car_name_id')
+        breakpoint()
         return super(carpointUser,self).create(vals)
 
     @api.depends('fuel_price')
