@@ -141,5 +141,15 @@
                 </kanban>
             </field>
         </record>
+        <record id="car_car_view" model="ir.ui.view">
+            <field name="name">car.calendar.view</field>
+            <field name="model">carpoint.cars.rental</field>
+            <field name="arch" type="xml">
+                <calendar string="Leads Generation" create="0" mode="month" hide_time="true" event_limit="5">
+                    <field name="name"/>
+                    
+                </calendar>
+            </field>
+        </record>
     </data>
 </odoo>

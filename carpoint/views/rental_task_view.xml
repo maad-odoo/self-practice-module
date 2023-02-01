@@ -100,6 +100,16 @@
             </kanban>
         </field>
     </record>
+    <record id="estate_model_form_cak" model="ir.ui.view">
+        <field name="name">estate.property.form.cal</field>
+        <field name="model">carpoint.rental.task</field>
+        <field name="arch" type="xml">
+            <calendar string="Calendar" date_start="task_DOS">
+                <field name="seq_name"/>
+                <field name="car_name_id"/>
+            </calendar>
+        </field>
+    </record>
     <record id="carpoint_rental_task_search" model="ir.ui.view">
         <field name="name">rental.task.search</field>
         <field name="model">carpoint.rental.task</field>

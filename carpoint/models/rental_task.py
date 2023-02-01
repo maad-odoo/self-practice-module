@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
+import time
 from odoo import models, fields,api
 from dateutil.relativedelta import relativedelta
+from datetime import timedelta
 from odoo.exceptions import ValidationError
 
 
@@ -18,8 +20,8 @@ class carpointUser(models.Model):
     car_color = fields.Char(related="car_name_id.car_color")
     car_no_plate = fields.Char(related="car_name_id.car_no_plate")
     active = fields.Boolean(default=True)
-    task_DOS = fields.Date('Date of issue: ',default=lambda self:fields.Datetime.today())
-    task_end = fields.Date(compute="compute_deadline",inverse="inverse_deadline")
+    task_DOS = fields.Date('Date of issue: ',default=lambda self:fields.Datetime.today(),required=True)
+    task_end = fields.Date(compute="compute_deadline",inverse="inverse_deadline",required=True)
     fuel_price = fields.Float(string="Today's Fuel Price:")
     total_price = fields.Float(compute="compute_total_price",default=0,store=True)
     validity=fields.Integer(string="Duration",tracking=True)
@@ -63,15 +65,19 @@ class carpointUser(models.Model):
     @api.model
     def create(self,vals):
         vals['seq_name'] = self.env['ir.sequence'].next_by_code('carpoint.rental.task')
-        task = self.env['carpoint.rental.task'].search([])
-        tasks = self.env['carpoint.rental.task'].mapped('car_name_id')
-        breakpoint()
+        tasks = self.env['carpoint.rental.task'].search([('car_name_id','=',vals['car_name_id'])])
+        for rec in tasks:
+            start_prev = rec.task_DOS.strftime('%Y-%m-%d')
+            end_prev = rec.task_end.strftime('%Y-%m-%d') 
+            if vals.get('task_DOS') >= start_prev:
+                if vals.get('task_end') <= end_prev:
+                    raise ValidationError("Task is previously made between this time frame")
         return super(carpointUser,self).create(vals)
 
     @api.depends('fuel_price')
     def compute_total_price(self):
         for record in self:
-            if(record.total_distance == 0):
+            if(record.total_distance == 0): 
                 raise ValidationError("Fill the Total Distance")
             if(record.car_avg_milage == 0):
                 raise ValidationError("Please select a car name")
