@@ -10,26 +10,20 @@ class carpointRentalCar(models.Model):
 
     name = fields.Char(string="Car Name:",required=True,tracking=True)
     car_company = fields.Char(string="Car Company:")
-    car_color = fields.Char(string="Car Color:",required=True)
-    car_no_plate = fields.Char("Number Plate:",required=True)
-    active = fields.Boolean(default=True,tracking=True)
-    car_manuf_year = fields.Date(string="Cars Manufacturing Date:")
-    car_fitness = fields.Date(string="Cars Fitness:")
-    car_insurance = fields.Date(string="Insurance Date",tracking=True)
-    car_insurance_Expirey = fields.Date(string="Insurance expirey",tracking=True)
-    car_service = fields.Date("Latest Service Date:",tracking=True)
-    car_next_service = fields.Date("Upcomming Service:",tracking=True)
+    car_color = fields.Char(string="Car Color:")
+    car_no_plate = fields.Char("Number Plate:",required=False)
+    
     car_engine = fields.Integer('Engine Displacement (cc):')
-    car_avg_milage = fields.Integer('Average Milage:',required=True)
+    car_avg_milage = fields.Integer('Average Milage:',required=False)
     car_totalkm = fields.Integer('Total KM:')
     task_count = fields.Integer(compute="_compute_task_count")
-    car_fuel = fields.Selection(selection=[('petrol','Petrol'),('disel','Disel'),('cng','CNG'),('ev','EV')],required=True)
+    car_fuel = fields.Selection(selection=[('petrol','Petrol'),('disel','Disel'),('cng','CNG'),('ev','EV')],required=False)
     car_transmission = fields.Selection(selection=[
         ('AT','Automatic Transmission (AT)'),
         ('MT','Manual Transmission (MT)'),
         ('AMT','Automatic Manual Transmission'),
         ('CVT','Continously Variable Transmission (CVT)'),
-        ('DCT','Dual Clutch Transmission')],required=True)
+        ('DCT','Dual Clutch Transmission')],required=False)
     car_category = fields.Selection(selection=[
         ('sedan','Sedan'),
         ('suv','Semi Urban Vehical (SUV)'),
@@ -38,13 +32,20 @@ class carpointRentalCar(models.Model):
         ('offroad','Off-Roader'),
         ('muv','Multi-Utility Vehical'),
         ('compactsedan','Comapact Sedan'),
-        ('minibus','Mini Bus')],required=True)
+        ('minibus','Mini Bus')],required=False)
     # car_image=fields.Image(string="Image")
-    car_seating = fields.Selection(selection=[('2','2'),('4','4'),('5','5'),('7','7'),('12','12'),('14','14')],required=True)
-    car_availability = fields.Selection(selection=[('available','Available'),('booked','Booked'),('undermain','Under Maintainance')],tracking=True)
-    state=fields.Selection(selection=[('vacant', 'Vacant'), ('on_road', 'On Road'),('on_service', 'On Service'),('in_active', 'In Active')],tracking=True)
+    car_seating = fields.Selection(selection=[('2','2'),('4','4'),('5','5'),('7','7'),('12','12'),('14','14')],required=False)
+    car_availability = fields.Selection(selection=[('available','Available'),('booked','Booked'),('under_maintainance','Under Maintainance')],tracking=True)
+    state=fields.Selection(selection=[('vacant', 'Vacant'), ('on_road', 'On Road'),('on_service', 'On Service'),('in_active', 'In Active')],default='vacant',tracking=True)
     car_history=fields.One2many("carpoint.rental.task","car_name_id",string="Previous Activities",readonly=True)
-    # ------------------------ snakes---------------------------------
+    active = fields.Boolean(default=True,tracking=True)
+    car_manuf_year = fields.Date(string="Cars Manufacturing Date:")
+    car_fitness = fields.Date(string="Cars Fitness:")
+    car_insurance = fields.Date(string="Insurance Date",tracking=True)
+    car_insurance_Expirey = fields.Date(string="Insurance expirey",tracking=True)
+    car_service = fields.Date("Latest Service Date:",tracking=True)
+    car_next_service = fields.Date("Upcomming Service:",tracking=True)
+    # ------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                               
     snake_id = fields.Many2one('carpoint.cars.rental',string="Snake:")
     snake_field_ids = fields.One2many('carpoint.cars.rental','snake_id',domain=[('active', '=', True)])
 

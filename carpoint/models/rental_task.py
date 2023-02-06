@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
+import time
 from odoo import models, fields,api
 from dateutil.relativedelta import relativedelta
+from datetime import timedelta
 from odoo.exceptions import ValidationError
 
 
@@ -18,55 +20,78 @@ class carpointUser(models.Model):
     car_color = fields.Char(related="car_name_id.car_color")
     car_no_plate = fields.Char(related="car_name_id.car_no_plate")
     active = fields.Boolean(default=True)
-    task_DOS = fields.Date('Date of issue: ',default=lambda self:fields.Datetime.today())
-    task_end = fields.Date(compute="compute_deadline",inverse="inverse_deadline")
-    fuel_price = fields.Float(string="Today's Fuel Price:",required=True)
-    total_price = fields.Float(compute="compute_total_price",default=0)
-    validity=fields.Integer(string="Duration",tracking=True,required=True)
+    task_DOS = fields.Date('Date of issue: ',default=lambda self:fields.Datetime.today(),required=True)
+    task_end = fields.Date(compute="compute_deadline",inverse="inverse_deadline",required=True)
+    fuel_price = fields.Float(string="Today's Fuel Price:")
+    total_price = fields.Float(compute="compute_total_price",default=0,store=True)
+    validity=fields.Integer(string="Duration",tracking=True)
     car_avg_milage = fields.Integer(related="car_name_id.car_avg_milage")
-    total_distance = fields.Integer(string="Total Distance: ",required=True)
+    total_distance = fields.Integer(string="Total Distance: ")
     car_transmission = fields.Selection(related="car_name_id.car_transmission")
     car_category = fields.Selection(related="car_name_id.car_category")
     car_seating = fields.Selection(related="car_name_id.car_seating")
     car_fuel = fields.Selection(related="car_name_id.car_fuel")
-    mode=fields.Selection(selection=[('with_driver','With Driver'),('self_driver','Self Driving')],tracking=True,required=True,default="self_driver")
+    priority = fields.Selection([
+        ('clear','Clear'),
+        ('urgent', 'Urgent'),
+        ('normal', 'Normal'),
+        ('lowand', 'Lowand'),
+        ('high','High')],
+        copy=False, default='normal')
+    mode=fields.Selection(selection=[('with_driver','With Driver'),('self_driver','Self Driving')],tracking=True,default="self_driver")
     state=fields.Selection(selection=[('new', 'New'), ('inprogress', 'In Progress'),('close','Close')],default='new',tracking=True)
-    tags=fields.Many2many("carpoint.tags",string="Tags")
-    task_user = fields.Many2one('carpoint.users',required=True,tracking=True)
-    car_name_id = fields.Many2one("carpoint.cars.rental",string="Car Name",required=True)
-    driver_id = fields.Many2one("rental.driver",string="Driver")
+    tags_ids=fields.Many2many("carpoint.rental.tags",string="Tags")
+    task_user_id = fields.Many2one('carpoint.users',required=True)
+    car_name_id = fields.Many2one("carpoint.cars.rental",string="Car Name",required=True,domain=[('state','in',['vacant'])])
+    driver_id = fields.Many2one("carpoint.employee",string="Driver",domain=[('driver_status','in',['off_trip'])])
+    
 
+    @api.depends('state','car_name_id.state','employee_id.status')
     def action_to_in_progress(self):
         for record in self:
             record.state ='inprogress'
+            self.car_name_id.state = 'on_road'
+            if record.mode == 'with_driver':
+                self.employee_id.status = 'on_trip'
     
+    @api.depends('state','car_namr_id.state','employee_id.status')
     def action_to_close(self):
         for record in self:
             record.state ='close'
+            self.car_name_id.state = 'vacant'
+            if record.mode == 'with_driver':
+                self.employee_id.status = 'off_trip'
     
     @api.model
     def create(self,vals):
         vals['seq_name'] = self.env['ir.sequence'].next_by_code('carpoint.rental.task')
+        tasks = self.env['carpoint.rental.task'].search([('car_name_id','=',vals['car_name_id'])])
+        for rec in tasks:
+            start_prev = rec.task_DOS.strftime('%Y-%m-%d')
+            end_prev = rec.task_end.strftime('%Y-%m-%d') 
+            if vals.get('task_DOS') >= start_prev:
+                if vals.get('task_end') <= end_prev:
+                    raise ValidationError("Task is previously made between this time frame")
         return super(carpointUser,self).create(vals)
 
     @api.depends('fuel_price')
     def compute_total_price(self):
         for record in self:
-            if(record.total_distance == 0):
+            if(record.total_distance == 0): 
                 raise ValidationError("Fill the Total Distance")
             if(record.car_avg_milage == 0):
                 raise ValidationError("Please select a car name")
             fuel_cost = (record.total_distance/record.car_avg_milage*record.fuel_price)
             if record.validity==0:
                 if record.mode == 'withdriver':
-                    self.total_price = 2.4*fuel_cost+400
+                    self.total_price = eval('2.4*fuel_cost+400')
                 else:
-                    self.total_price = 2.0*fuel_cost+400
+                    self.total_price = eval('2.0*fuel_cost+400')
             else:
                 if record.mode == 'withdriver':
-                    self.total_price = 2.4*fuel_cost+1.4*fuel_cost+record.validity*800
+                    self.total_price = eval('2.4*fuel_cost+1.4*fuel_cost+record.validity*800')
                 else:
-                    self.total_price = 2.0*fuel_cost+1.4*fuel_cost+record.validity*400
+                    self.total_price = eval('2.0*fuel_cost+1.4*fuel_cost+record.validity*400')
      
     @api.depends('validity','task_end')
     def compute_deadline(self):
@@ -76,6 +101,12 @@ class carpointUser(models.Model):
     def inverse_deadline(self):
         for record in self:
             record.validity = (record.task_end - record.task_DOS).days
+
+    @api.constrains('validity')
+    def _check_constrains_SP(self):
+        for record in self:
+            if record.validity > 10 : 
+                raise ValidationError("A trip cannot be greater than 10 days.")
 
 
     """ Fuel_cost = total_distance/car_milage * fuel_price

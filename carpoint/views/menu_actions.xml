@@ -1,34 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-                <!-- Rental Task -->
+        <!-- _______________Task_________________ -->
         <record id="carpoint_rental_action" model="ir.actions.act_window">
                 <field name="name">Rental Task</field>
                 <field name="res_model">carpoint.rental.task</field>
+                <field name="view_mode">tree,kanban,calendar,form</field>
+                <field name="context">{"search_default_available":True}</field> 
+        </record>
+        <record id="carpoint_modification_action" model="ir.actions.act_window">
+                <field name="name">Modification Task</field>
+                <field name="res_model">carpoint.modification.task</field>
                 <field name="view_mode">tree,form</field>
         </record>
-                <!-- User menu -->
+        <record id="carpoint_repairing_action" model="ir.actions.act_window">
+                <field name="name">Repairing Task</field>
+                <field name="res_model">carpoint.repairing.task</field>
+                <field name="view_mode">tree,form</field>
+        </record>
+        <!-- _____________User menu_______________ -->
         <record id="carpoint_allusers_action" model="ir.actions.act_window">
                 <field name="name">All Users</field>
                 <field name="res_model">carpoint.users</field>
                 <field name="view_mode">tree,form</field>
         </record>
-                <!-- Rental Car -->
+        <!-- _____________Rental Car_______________ -->
         <record id="rental_car_action" model="ir.actions.act_window">
-                <field name="name">Cars</field>
+                <field name="name">Rental Cars</field>
                 <field name="res_model">carpoint.cars.rental</field>
                 <field name="view_mode">kanban,tree,form</field>
         </record>
-                <!-- Driver -->
+        <record id="modification_car_action" model="ir.actions.act_window">
+                <field name="name">Modification Cars</field>
+                <field name="res_model">carpoint.cars.rental</field>
+                <field name="view_mode">kanban,tree,form</field>
+        </record>
+        <record id="repair_car_action" model="ir.actions.act_window">
+                <field name="name">Repairing Cars</field>
+                <field name="res_model">carpoint.cars.rental</field>
+                <field name="view_mode">kanban,tree,form</field>
+        </record>
+        <!-- _____________Driver___________________ -->
         <record id="rental_emp_driver" model="ir.actions.act_window">
                 <field name="name">Driver</field>
-                <field name="res_model">rental.driver</field>
+                <field name="res_model">carpoint.employee</field>
                 <field name="view_mode">tree,form</field>
         </record>
-                <!-- Tags -->
+        <!-- _____________Tags_____________________ -->
         <record id="tags_action" model="ir.actions.act_window">
-                <field name="name">Tags</field>
-                <field name="res_model">carpoint.tags</field>
+                <field name="name">Rental Tags</field>
+                <field name="res_model">carpoint.rental.tags</field>
+                <field name="view_mode">tree,form</field>
+        </record>
+        <record id="modification_action" model="ir.actions.act_window">
+                <field name="name">Modification Tags</field>
+                <field name="res_model">carpoint.modification.tags</field>
+                <field name="view_mode">tree,form</field>
+        </record>
+        <record id="repair_action" model="ir.actions.act_window">
+                <field name="name">Reparing Tags</field>
+                <field name="res_model">carpoint.repairing.tags</field>
                 <field name="view_mode">tree,form</field>
         </record>
         <record id="carpoint_cars_stat_button" model="ir.actions.act_window">
@@ -38,6 +69,3 @@
                 <field name="domain">[('car_name_id','=',active_id)]</field>
         </record>
 </odoo>
-        
-
-      

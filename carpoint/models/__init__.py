@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
+
 from . import carpoint_users
-# from . import carpoint_rental_task
-# # /from . import test_seq
-from . import carpoint_cars_rental
-from . import carpoint_rental_task
-from . import rental_driver
-from . import tags
-
-
-
-
+from . import cars_rental
+from . import rental_task
+from . import carpoint_employee
+from . import rental_tags
+from . import modification_task
+from . import modification_tags
+from . import repairing_task
+from . import repairing_tags

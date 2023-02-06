@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="carpoint.rental.tags" id="carpoint_tags_rental1">
+            <field name="name">Tour</field>
+            <field name="color">1</field>
+        </record>
+        <record model="carpoint.rental.tags" id="carpoint_tags_rental2">
+            <field name="name">Travel</field>
+            <field name="color">2</field>
+        </record>
+        <record model="carpoint.rental.tags" id="carpoint_tags_rental3">
+            <field name="name">Event</field>
+            <field name="color">3</field>
+        </record>
+        <record model="carpoint.rental.tags" id="carpoint_tags_rental4">
+            <field name="name">VIP</field>
+            <field name="color">4</field>
+        </record>
+        <record model="carpoint.rental.tags" id="carpoint_tags_rental5">
+            <field name="name">Hospital Visit</field>
+            <field name="color">5</field>
+        </record>
+        <record model="carpoint.rental.tags" id="carpoint_tags_rental6">
+            <field name="name">Temple Visit</field>
+            <field name="color">6</field>
+        </record>
+        <record model="carpoint.rental.tags" id="carpoint_tags_rental7">
+            <field name="name">Airport Drop</field>
+            <field name="color">7</field>
+        </record>
+        <record model="carpoint.rental.tags" id="carpoint_tags_rental8">
+            <field name="name">General Purpose</field>
+            <field name="color">8</field>
+        </record>
+        <record model="carpoint.rental.tags" id="carpoint_tags_rental9">
+            <field name="name">Offical Visit</field>
+            <field name="color">9</field>
+        </record>
+        <record model="carpoint.rental.tags" id="carpoint_tags_rental10">
+            <field name="name">Government Task</field>
+            <field name="color">10</field>
+        </record>
+    </data>
+</odoo>

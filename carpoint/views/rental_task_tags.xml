@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="carpoint_tags_tree" model="ir.ui.view">
+        <field name="name">carpoint.tags.tree</field>
+        <field name="model">carpoint.rental.tags</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" />
+                <field name="color" widget="color_picker"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

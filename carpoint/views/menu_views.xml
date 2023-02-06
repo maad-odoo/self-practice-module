@@ -2,16 +2,20 @@
 <odoo>
    <menuitem id="carpoint_menu_root" name="Car Point">
         <!-- Rntal Task -->
-        <menuitem id="carpoint_rent_menu" name="Rent Task" sequence="10">
+        <menuitem id="carpoint_task_menu" name="Task" sequence="10">
                 <menuitem id="carpointrental" action="carpoint_rental_action"/>
+                <menuitem id="carpointmodification" action="carpoint_modification_action"/>
+                <menuitem id="carpointrepairing" action="carpoint_repairing_action"/>
         </menuitem>
         <!-- Users -->
         <menuitem id="carpoint_users_menu" name="Users" sequence="11">
             <menuitem id="carpoint_user_all" action="carpoint_allusers_action"/>
         </menuitem>
          <!-- Rental Cars -->
-        <menuitem id="carpoint_rental_cars" name="Rental Cars" sequence="12">
+        <menuitem id="carpoint_cars_menu" name="All Cars" sequence="12">
             <menuitem id="carpoint_rental_car" action="rental_car_action"/>
+            <menuitem id="carpoint_modification_car" action="modification_car_action"/>
+            <menuitem id="carpoint_repair_car" action="repair_car_action"/>
         </menuitem>
         <!-- Employees -->
         <menuitem id="carpoint_employee" name="Employees" sequence="13">
@@ -19,7 +23,9 @@
         </menuitem> 
         <!-- Tags -->
         <menuitem id="carpoint_tags" name="Tags" sequence="14">
-            <menuitem id="carpoint_menu_tags" action="tags_action"/>
+            <menuitem id="carpoint_rental_tags" action="tags_action"/>
+            <menuitem id="carpoint_modification_tags" action="modification_action"/>
+            <menuitem id="carpoint_repair_tags" action="repair_action"/>
         </menuitem>
     </menuitem>
 </odoo>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="modification_task_tree" model="ir.ui.view">
+        <field name="name">carpoint.rental.task.tree.view</field>
+        <field name="model">carpoint.modification.task</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="mod_name"/>
+                <field name="task_user_id"/>
+                <field name="modification_category"/> 
+                <field name="tags_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="modification_desc"/>
+                <field name="modification_car"/>
+                <field name="modification_car_noplate"/>
+                <field name="modification_date"/>
+            </tree>
+        </field>
+    </record>
+    <record id="modification_task_form" model="ir.ui.view">
+            <field name="name">carpoint.rental.task.form</field>
+            <field name="model">carpoint.modification.task</field>
+            <field name="arch" type="xml">
+                <form string="user_form">
+                <!-- Header Section -->
+                    <header>
+                        <field name="modification_status" widget="statusbar" options="{'clickable':'1'}"/>
+                        <!-- <button type="object" string="In Progress"/>
+                        <button type="object" string="Done"/>
+                        <button type="object" string="Review"/>
+                        <button type="object" string="Close"/>            -->
+                    </header>
+                <!-- / Header Section -->
+                    <sheet>
+                        <h1><field name="mod_name" nolabel="1"/></h1>
+                        <group>
+                            <group>
+                                <field name="task_user_id"/>
+                                <field name="modification_category"/>
+                                <field name="tags_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            </group>
+                            <group>
+                                <field name="modification_car"/>
+                                <field name="modification_car_brand"/>
+                                <field name="modification_car_noplate"/> 
+                            </group>
+                            <notebook>
+                                <page string="Description">
+                                    <group>
+                                        <field name="modification_desc"/>
+                                    </group>
+                                </page>
+                                <page string="Date and Duration">
+                                    <group>
+                                        <field name="modification_date"/> 
+                                    </group>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="activity_ids"></field>
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>
+            </field>
+    </record>
+    
+    <record id="modification_task_search" model="ir.ui.view">
+        <field name="name">modification.task.search</field>
+        <field name="model">carpoint.modification.task</field>
+        <field name="arch" type="xml">
+            <search string="Search...">
+                <field name="modification_category" />
+                <field name="modification_desc" />
+                <field name="modification_car" />
+                <filter name="tatus_in_progress" string="In Progress" domain="[('modification_status', '=', 'in_progress')]" />
+                <filter name="status_done" string="Done" domain="[('modification_status', '=', 'done')]" />
+                <filter name="status_review" string="Review" domain="[('modification_status', '=', 'review')]" />
+                <filter name="status_close" string="Close" domain="[('modification_status', '=', 'close')]" />
+            </search>
+        </field>
+    </record>
+</odoo>

@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record>
-        
-    </record>
-</odoo>
+    <data>
+        <record model="carpoint.cars.rental" id="rental_cars_data1">
+            <field name="name">G Wagon</field>
+        </record>
+       <record model="carpoint.cars.rental" id="rental_cars_data2">
+            <field name="name">Scorpio</field>
+        </record>
+        <record model="carpoint.cars.rental" id="rental_cars_data3">
+            <field name="name">Gurkha</field>
+        </record>
+        <record model="carpoint.cars.rental" id="rental_cars_data13">
+            <field name="name">Thar</field>
+        </record>
+        <record model="carpoint.cars.rental" id="rental_cars_data4">
+            <field name="name">Safari</field>
+        </record>
+        <record model="carpoint.cars.rental" id="rental_cars_data5">
+            <field name="name">Verna</field>
+        </record>
+        <record model="carpoint.cars.rental" id="rental_cars_data6">
+            <field name="name">Fortuner</field>
+        </record>
+        <record model="carpoint.cars.rental" id="rental_cars_data7">
+            <field name="name">Endavour</field>
+        </record>
+        <record model="carpoint.cars.rental" id="rental_cars_data8">
+            <field name="name">Alturus G4</field>
+        </record>
+        <record model="carpoint.cars.rental" id="rental_cars_data9">
+            <field name="name">Glosture</field>
+        </record>
+        <record model="carpoint.cars.rental" id="rental_cars_data10">
+            <field name="name">Hell Cat</field>
+        </record>
+        <record model="carpoint.cars.rental" id="rental_cars_data11">
+            <field name="name">Mustang</field>
+        </record>
+    </data>
+</odoo> 
