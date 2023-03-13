@@ -5,9 +5,9 @@ from odoo import models,fields,api
 class modificationTask(models.Model):
     _name = "carpoint.modification.task"
     _description = "Carpoint Modifications Description"
-    # _inherits = {"carpoint.users":"user_id"}
+    _rec_name = "mod_name"
     _inherit = ['mail.thread','mail.activity.mixin']
-
+    
 
     mod_name = fields.Char(string='Task Reference', required=True,readonly=True, default=lambda self: ('New'))
     task_user_id = fields.Many2one("carpoint.users",required=True)
